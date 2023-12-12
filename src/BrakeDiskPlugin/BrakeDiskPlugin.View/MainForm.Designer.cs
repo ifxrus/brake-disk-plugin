@@ -33,11 +33,11 @@
             ParametersPanel = new Panel();
             FastenerDiameterTextBox = new TextBox();
             CenteringDiameterTextBox = new TextBox();
-            LowerBrakeDiskDiameterTextBox = new TextBox();
-            HigherBrakeDiskDiameterTextBox = new TextBox();
+            SmallerFastenerBrakeDiskDiameterTextBox = new TextBox();
+            LargerFastenerBrakeDiskDiameterTextBox = new TextBox();
             BrakeDiskDiameterTextBox = new TextBox();
-            WidthLowerFastenerTextBox = new TextBox();
-            WidthHigherFastenerTextBox = new TextBox();
+            WidthSmallerFastenerTextBox = new TextBox();
+            WidthLargerFastenerTextBox = new TextBox();
             WidthWorkingSurfaceTextBox = new TextBox();
             BuildingPanel = new TableLayoutPanel();
             InfoPanel = new Panel();
@@ -82,11 +82,11 @@
             ParametersPanel.BorderStyle = BorderStyle.FixedSingle;
             ParametersPanel.Controls.Add(FastenerDiameterTextBox);
             ParametersPanel.Controls.Add(CenteringDiameterTextBox);
-            ParametersPanel.Controls.Add(LowerBrakeDiskDiameterTextBox);
-            ParametersPanel.Controls.Add(HigherBrakeDiskDiameterTextBox);
+            ParametersPanel.Controls.Add(SmallerFastenerBrakeDiskDiameterTextBox);
+            ParametersPanel.Controls.Add(LargerFastenerBrakeDiskDiameterTextBox);
             ParametersPanel.Controls.Add(BrakeDiskDiameterTextBox);
-            ParametersPanel.Controls.Add(WidthLowerFastenerTextBox);
-            ParametersPanel.Controls.Add(WidthHigherFastenerTextBox);
+            ParametersPanel.Controls.Add(WidthSmallerFastenerTextBox);
+            ParametersPanel.Controls.Add(WidthLargerFastenerTextBox);
             ParametersPanel.Controls.Add(WidthWorkingSurfaceTextBox);
             ParametersPanel.Dock = DockStyle.Fill;
             ParametersPanel.Location = new Point(0, 0);
@@ -97,8 +97,9 @@
             // 
             // FastenerDiameterTextBox
             // 
-            FastenerDiameterTextBox.BackColor = Color.White;
+            FastenerDiameterTextBox.BackColor = Color.WhiteSmoke;
             FastenerDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
+            FastenerDiameterTextBox.Enabled = false;
             FastenerDiameterTextBox.Location = new Point(368, 286);
             FastenerDiameterTextBox.Name = "FastenerDiameterTextBox";
             FastenerDiameterTextBox.Size = new Size(47, 22);
@@ -114,57 +115,67 @@
             CenteringDiameterTextBox.Size = new Size(52, 22);
             CenteringDiameterTextBox.TabIndex = 100;
             CenteringDiameterTextBox.TabStop = false;
+            CenteringDiameterTextBox.KeyPress += CenteringDiameterTextBox_KeyPress;
+            CenteringDiameterTextBox.Leave += CenteringDiameterTextBox_Leave;
             // 
-            // LowerBrakeDiskDiameterTextBox
+            // SmallerFastenerBrakeDiskDiameterTextBox
             // 
-            LowerBrakeDiskDiameterTextBox.BackColor = Color.White;
-            LowerBrakeDiskDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
-            LowerBrakeDiskDiameterTextBox.Location = new Point(534, 333);
-            LowerBrakeDiskDiameterTextBox.Name = "LowerBrakeDiskDiameterTextBox";
-            LowerBrakeDiskDiameterTextBox.Size = new Size(56, 22);
-            LowerBrakeDiskDiameterTextBox.TabIndex = 100;
-            LowerBrakeDiskDiameterTextBox.TabStop = false;
+            SmallerFastenerBrakeDiskDiameterTextBox.BackColor = Color.WhiteSmoke;
+            SmallerFastenerBrakeDiskDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
+            SmallerFastenerBrakeDiskDiameterTextBox.Enabled = false;
+            SmallerFastenerBrakeDiskDiameterTextBox.Location = new Point(534, 333);
+            SmallerFastenerBrakeDiskDiameterTextBox.Name = "SmallerFastenerBrakeDiskDiameterTextBox";
+            SmallerFastenerBrakeDiskDiameterTextBox.Size = new Size(56, 22);
+            SmallerFastenerBrakeDiskDiameterTextBox.TabIndex = 100;
+            SmallerFastenerBrakeDiskDiameterTextBox.TabStop = false;
             // 
-            // HigherBrakeDiskDiameterTextBox
+            // LargerFastenerBrakeDiskDiameterTextBox
             // 
-            HigherBrakeDiskDiameterTextBox.BackColor = Color.White;
-            HigherBrakeDiskDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
-            HigherBrakeDiskDiameterTextBox.Location = new Point(535, 10);
-            HigherBrakeDiskDiameterTextBox.Name = "HigherBrakeDiskDiameterTextBox";
-            HigherBrakeDiskDiameterTextBox.ShortcutsEnabled = false;
-            HigherBrakeDiskDiameterTextBox.Size = new Size(56, 22);
-            HigherBrakeDiskDiameterTextBox.TabIndex = 100;
-            HigherBrakeDiskDiameterTextBox.TabStop = false;
+            LargerFastenerBrakeDiskDiameterTextBox.BackColor = Color.White;
+            LargerFastenerBrakeDiskDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
+            LargerFastenerBrakeDiskDiameterTextBox.Location = new Point(535, 11);
+            LargerFastenerBrakeDiskDiameterTextBox.Name = "LargerFastenerBrakeDiskDiameterTextBox";
+            LargerFastenerBrakeDiskDiameterTextBox.ShortcutsEnabled = false;
+            LargerFastenerBrakeDiskDiameterTextBox.Size = new Size(56, 22);
+            LargerFastenerBrakeDiskDiameterTextBox.TabIndex = 100;
+            LargerFastenerBrakeDiskDiameterTextBox.TabStop = false;
+            LargerFastenerBrakeDiskDiameterTextBox.KeyPress += LargerFastenerBrakeDiskDiameterTextBox_KeyPress;
+            LargerFastenerBrakeDiskDiameterTextBox.Leave += LargerFastenerBrakeDiskDiameterTextBox_Leave;
             // 
             // BrakeDiskDiameterTextBox
             // 
             BrakeDiskDiameterTextBox.BackColor = Color.White;
             BrakeDiskDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
-            BrakeDiskDiameterTextBox.Location = new Point(194, 10);
+            BrakeDiskDiameterTextBox.Location = new Point(194, 11);
             BrakeDiskDiameterTextBox.Name = "BrakeDiskDiameterTextBox";
             BrakeDiskDiameterTextBox.Size = new Size(56, 22);
             BrakeDiskDiameterTextBox.TabIndex = 100;
             BrakeDiskDiameterTextBox.TabStop = false;
+            BrakeDiskDiameterTextBox.KeyPress += BrakeDiskDiameterTextBox_KeyPress;
+            BrakeDiskDiameterTextBox.Leave += BrakeDiskDiameterTextBox_Leave;
             // 
-            // WidthLowerFastenerTextBox
+            // WidthSmallerFastenerTextBox
             // 
-            WidthLowerFastenerTextBox.BackColor = Color.White;
-            WidthLowerFastenerTextBox.BorderStyle = BorderStyle.FixedSingle;
-            WidthLowerFastenerTextBox.Location = new Point(88, 263);
-            WidthLowerFastenerTextBox.Name = "WidthLowerFastenerTextBox";
-            WidthLowerFastenerTextBox.Size = new Size(56, 22);
-            WidthLowerFastenerTextBox.TabIndex = 100;
-            WidthLowerFastenerTextBox.TabStop = false;
+            WidthSmallerFastenerTextBox.BackColor = Color.WhiteSmoke;
+            WidthSmallerFastenerTextBox.BorderStyle = BorderStyle.FixedSingle;
+            WidthSmallerFastenerTextBox.Enabled = false;
+            WidthSmallerFastenerTextBox.Location = new Point(89, 263);
+            WidthSmallerFastenerTextBox.Name = "WidthSmallerFastenerTextBox";
+            WidthSmallerFastenerTextBox.Size = new Size(56, 22);
+            WidthSmallerFastenerTextBox.TabIndex = 100;
+            WidthSmallerFastenerTextBox.TabStop = false;
             // 
-            // WidthHigherFastenerTextBox
+            // WidthLargerFastenerTextBox
             // 
-            WidthHigherFastenerTextBox.BackColor = Color.White;
-            WidthHigherFastenerTextBox.BorderStyle = BorderStyle.FixedSingle;
-            WidthHigherFastenerTextBox.Location = new Point(89, 121);
-            WidthHigherFastenerTextBox.Name = "WidthHigherFastenerTextBox";
-            WidthHigherFastenerTextBox.Size = new Size(56, 22);
-            WidthHigherFastenerTextBox.TabIndex = 100;
-            WidthHigherFastenerTextBox.TabStop = false;
+            WidthLargerFastenerTextBox.BackColor = Color.White;
+            WidthLargerFastenerTextBox.BorderStyle = BorderStyle.FixedSingle;
+            WidthLargerFastenerTextBox.Location = new Point(89, 121);
+            WidthLargerFastenerTextBox.Name = "WidthLargerFastenerTextBox";
+            WidthLargerFastenerTextBox.Size = new Size(56, 22);
+            WidthLargerFastenerTextBox.TabIndex = 100;
+            WidthLargerFastenerTextBox.TabStop = false;
+            WidthLargerFastenerTextBox.KeyPress += WidthLargerFastenerTextBox_KeyPress;
+            WidthLargerFastenerTextBox.MouseLeave += WidthLargerFastenerTextBox_MouseLeave;
             // 
             // WidthWorkingSurfaceTextBox
             // 
@@ -175,6 +186,8 @@
             WidthWorkingSurfaceTextBox.Size = new Size(56, 22);
             WidthWorkingSurfaceTextBox.TabIndex = 100;
             WidthWorkingSurfaceTextBox.TabStop = false;
+            WidthWorkingSurfaceTextBox.KeyPress += WidthWorkingSurfaceTextBox_KeyPress;
+            WidthWorkingSurfaceTextBox.Leave += WidthWorkingSurfaceTextBox_Leave;
             // 
             // BuildingPanel
             // 
@@ -349,11 +362,11 @@
         private TableLayoutPanel MainLayoutPanel;
         private Panel ParametersPanel;
         private TextBox WidthWorkingSurfaceTextBox;
-        private TextBox WidthLowerFastenerTextBox;
-        private TextBox WidthHigherFastenerTextBox;
+        private TextBox WidthSmallerFastenerTextBox;
+        private TextBox WidthLargerFastenerTextBox;
         private TextBox CenteringDiameterTextBox;
-        private TextBox LowerBrakeDiskDiameterTextBox;
-        private TextBox HigherBrakeDiskDiameterTextBox;
+        private TextBox SmallerFastenerBrakeDiskDiameterTextBox;
+        private TextBox LargerFastenerBrakeDiskDiameterTextBox;
         private TextBox BrakeDiskDiameterTextBox;
         private TextBox FastenerDiameterTextBox;
         private TableLayoutPanel BuildingPanel;
