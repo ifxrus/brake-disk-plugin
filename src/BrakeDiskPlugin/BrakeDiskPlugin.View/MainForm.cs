@@ -10,6 +10,7 @@ namespace BrakeDiskPlugin.View
     /// </summary>
     public partial class MainForm : Form
     {
+        // TODO: XML
         private readonly BrakeDisk _brakeDisk = new ();
 
         /// <summary>
@@ -76,6 +77,7 @@ namespace BrakeDiskPlugin.View
         /// </summary>
         /// <param name="sender">The TextBox raising the event.</param>
         /// <param name="e">KeyPress event arguments.</param>
+        // TODO: Дубль
         private void BrakeDiskDiameterTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             HandleKeyPress(sender, e);
@@ -134,7 +136,10 @@ namespace BrakeDiskPlugin.View
         private void HandleKeyPress(object sender, KeyPressEventArgs e)
         {
             var textBox = (TextBox)sender;
-            e.Handled = !InterfaceValidator.IsValidInput(e.KeyChar, textBox.Text, MainFormConstants.MaxInputLength);
+            e.Handled = !InterfaceValidator.IsValidInput(
+                e.KeyChar,
+                textBox.Text,
+                MainFormConstants.MaxInputLength);
         }
 
         /// <summary>
@@ -155,6 +160,7 @@ namespace BrakeDiskPlugin.View
         /// </summary>
         /// <param name="sender">The TextBox raising the event.</param>
         /// <param name="e">Event arguments.</param>
+        // TODO: Дубль
         private void BrakeDiskDiameterTextBox_Leave(object sender, EventArgs e)
         {
             SetValue(sender, ParameterType.BrakeDiskDiameter);

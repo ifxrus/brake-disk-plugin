@@ -83,11 +83,13 @@
                 case ParameterType.WidthWorkingSurface:
                 case ParameterType.LargerFastenerDiameter:
                 case ParameterType.WidthLargerFastener:
+                    // TODO: сделать {} везде для единообразия
                     _isReconciled = false;
                     break;
 
                 case ParameterType.SmallerFastenerDiameter:
                 {
+                    // TODO: магические числа
                     minValue = _parameters[ParameterType.LargerFastenerDiameter].Value - 10;
                     maxValue = _parameters[ParameterType.LargerFastenerDiameter].Value - 10;
                     value = _parameters[ParameterType.LargerFastenerDiameter].Value - 10;

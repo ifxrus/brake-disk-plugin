@@ -151,7 +151,7 @@
             BrakeDiskDiameterTextBox.Size = new Size(56, 22);
             BrakeDiskDiameterTextBox.TabIndex = 100;
             BrakeDiskDiameterTextBox.TabStop = false;
-            BrakeDiskDiameterTextBox.KeyPress += BrakeDiskDiameterTextBox_KeyPress;
+            BrakeDiskDiameterTextBox.KeyPress += HandleKeyPress;
             BrakeDiskDiameterTextBox.Leave += BrakeDiskDiameterTextBox_Leave;
             // 
             // WidthSmallerFastenerTextBox
