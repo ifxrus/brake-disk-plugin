@@ -83,9 +83,10 @@
                 case ParameterType.WidthWorkingSurface:
                 case ParameterType.LargerFastenerDiameter:
                 case ParameterType.WidthLargerFastener:
-                    // TODO: сделать {} везде для единообразия
+                {
                     _isReconciled = false;
                     break;
+                }
 
                 case ParameterType.SmallerFastenerDiameter:
                 {

@@ -10,8 +10,25 @@ namespace BrakeDiskPlugin.View
     /// </summary>
     public partial class MainForm : Form
     {
-        // TODO: XML
+        /// <summary>
+        /// Represents a class member that holds an instance of the BrakeDisk class.
+        /// </summary>
         private readonly BrakeDisk _brakeDisk = new ();
+
+        /// <summary>
+        /// Represents a dictionary that maps TextBox controls to their corresponding ParameterType values.
+        /// </summary>
+        private readonly Dictionary<TextBox, ParameterType> _textBoxParameters;
+
+        /// <summary>
+        /// Represents the flag indicating whether an error condition is currently active in the program.
+        /// </summary>
+        private bool _errorIsActive;
+
+        /// <summary>
+        /// Represents the TextBox control associated with the active error condition, or null if no error is currently active.
+        /// </summary>
+        private TextBox? _errorTextBox;
 
         /// <summary>
         /// The main method of the program interface.
@@ -19,6 +36,35 @@ namespace BrakeDiskPlugin.View
         public MainForm()
         {
             InitializeComponent();
+
+            _textBoxParameters = new Dictionary<TextBox, ParameterType>
+            {
+                {
+                    LargerFastenerBrakeDiskDiameterTextBox, ParameterType.LargerFastenerDiameter
+                },
+                {
+                    BrakeDiskDiameterTextBox, ParameterType.BrakeDiskDiameter
+                },
+                {
+                    CenteringDiameterTextBox, ParameterType.CenteringDiameter
+                },
+                {
+                    WidthWorkingSurfaceTextBox, ParameterType.WidthWorkingSurface
+                },
+                {
+                    WidthLargerFastenerTextBox, ParameterType.WidthLargerFastener
+                },
+                {
+                    FastenerDiameterTextBox, ParameterType.FastenerDiameter
+                },
+                {
+                    SmallerFastenerBrakeDiskDiameterTextBox, ParameterType.SmallerFastenerDiameter
+                },
+                {
+                    WidthSmallerFastenerTextBox, ParameterType.WidthSmallerFastener
+                }
+            };
+
             UpdateParameters();
         }
 
@@ -27,14 +73,10 @@ namespace BrakeDiskPlugin.View
         /// </summary>
         private void UpdateParameters()
         {
-            UpdateTextBox(BrakeDiskDiameterTextBox, ParameterType.BrakeDiskDiameter);
-            UpdateTextBox(LargerFastenerBrakeDiskDiameterTextBox, ParameterType.LargerFastenerDiameter);
-            UpdateTextBox(SmallerFastenerBrakeDiskDiameterTextBox, ParameterType.SmallerFastenerDiameter);
-            UpdateTextBox(FastenerDiameterTextBox, ParameterType.FastenerDiameter);
-            UpdateTextBox(CenteringDiameterTextBox, ParameterType.CenteringDiameter);
-            UpdateTextBox(WidthLargerFastenerTextBox, ParameterType.WidthLargerFastener);
-            UpdateTextBox(WidthSmallerFastenerTextBox, ParameterType.WidthSmallerFastener);
-            UpdateTextBox(WidthWorkingSurfaceTextBox, ParameterType.WidthWorkingSurface);
+            foreach (var kvp in _textBoxParameters)
+            {
+                UpdateTextBox(kvp.Key, kvp.Value);
+            }
         }
 
         /// <summary>
@@ -56,75 +98,41 @@ namespace BrakeDiskPlugin.View
         private void SetValue(object sender, ParameterType parameterType)
         {
             var textBox = (TextBox)sender;
+            var text = textBox.Text;
 
             try
             {
-                var text = textBox.Text;
-                if (double.TryParse(text, out double result))
+                if (double.TryParse(text, out var result))
                 {
                     _brakeDisk.SetValue(parameterType, result);
                 }
             }
             catch (ArgumentException exception)
             {
-                // TODO.
+                var result = MessageBox.Show(
+                    exception.Message + "\n\nВернуть последнее корректное значение?",
+                    "Ошибка",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Error);
+
+                if (result == DialogResult.No)
+                {
+                    SetTextBoxInactive(textBox);
+                    textBox.BackColor = MainFormColors.ErrorTextBoxColor;
+                    textBox.Text = text;
+                    _errorIsActive = true;
+                    return;
+                }
             }
-        }
 
-        /// <summary>
-        /// Handles the KeyPress event for the Brake Disk Diameter TextBox, restricting input to digits and control characters,
-        /// and limiting the length of the text to a specified maximum (MainFormConstants.MaxInputLength).
-        /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">KeyPress event arguments.</param>
-        // TODO: Дубль
-        private void BrakeDiskDiameterTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            HandleKeyPress(sender, e);
-        }
+            if (textBox != _errorTextBox)
+            {
+                return;
+            }
 
-        /// <summary>
-        /// Handles the KeyPress event for the Larger Fastener Brake Disk Diameter TextBox, restricting input to digits and control characters,
-        /// and limiting the length of the text to a specified maximum (MainFormConstants.MaxInputLength).
-        /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">KeyPress event arguments.</param>
-        private void LargerFastenerBrakeDiskDiameterTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            HandleKeyPress(sender, e);
-        }
-
-        /// <summary>
-        /// Handles the KeyPress event for the Centering Diameter TextBox, restricting input to digits and control characters,
-        /// and limiting the length of the text to a specified maximum (MainFormConstants.MaxInputLength).
-        /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">KeyPress event arguments.</param>
-        private void CenteringDiameterTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            HandleKeyPress(sender, e);
-        }
-
-        /// <summary>
-        /// Handles the KeyPress event for the Width Working Surface TextBox, restricting input to digits and control characters,
-        /// and limiting the length of the text to a specified maximum (MainFormConstants.MaxInputLength).
-        /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">KeyPress event arguments.</param>
-        private void WidthWorkingSurfaceTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            HandleKeyPress(sender, e);
-        }
-
-        /// <summary>
-        /// Handles the KeyPress event for the Width Larger Fastener TextBox, restricting input to digits and control characters,
-        /// and limiting the length of the text to a specified maximum (MainFormConstants.MaxInputLength).
-        /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">KeyPress event arguments.</param>
-        private void WidthLargerFastenerTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            HandleKeyPress(sender, e);
+            _errorIsActive = false;
+            _errorTextBox = null;
+            SetTextBoxActive();
         }
 
         /// <summary>
@@ -143,64 +151,68 @@ namespace BrakeDiskPlugin.View
         }
 
         /// <summary>
-        /// Event handler for the Leave event of the Larger Fastener Brake Disk Diameter TextBox.
-        /// Sets the value of the Larger Fastener Diameter parameter based on the TextBox input and updates parameters.
+        /// Event handler for the TextBox leave event.
+        /// This method is triggered when focus leaves a TextBox.
+        /// It sets the value of the corresponding parameter based on the TextBox and updates the parameters.
         /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">Event arguments.</param>
-        private void LargerFastenerBrakeDiskDiameterTextBox_Leave(object sender, EventArgs e)
+        /// <param name="sender">The TextBox control that triggered the event.</param>
+        /// <param name="e">The event arguments.</param>
+        private void LeaveTextBox(object sender, EventArgs e)
         {
-            SetValue(sender, ParameterType.LargerFastenerDiameter);
+            SetValue(sender, _textBoxParameters[(TextBox)sender]);
+
+            if (_errorIsActive)
+            {
+                return;
+            }
+
             UpdateParameters();
         }
 
         /// <summary>
-        /// Event handler for the Leave event of the Brake Disk Diameter TextBox.
-        /// Sets the value of the Brake Disk Diameter parameter based on the TextBox input and updates parameters.
+        /// Sets the state of a TextBox control including its enabled status and background color.
         /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">Event arguments.</param>
-        // TODO: Дубль
-        private void BrakeDiskDiameterTextBox_Leave(object sender, EventArgs e)
+        /// <param name="textBox">The TextBox control to modify.</param>
+        /// <param name="isEnabled">Specifies whether the TextBox should be enabled.</param>
+        /// <param name="backgroundColor">The background color to set for the TextBox.</param>
+        private void SetTextBoxState(TextBox textBox, bool isEnabled, Color backgroundColor)
         {
-            SetValue(sender, ParameterType.BrakeDiskDiameter);
-            UpdateParameters();
+            textBox.ReadOnly = isEnabled;
+            textBox.BackColor = backgroundColor;
         }
 
         /// <summary>
-        /// Event handler for the Leave event of the Centering Diameter TextBox.
-        /// Sets the value of the Centering Diameter parameter based on the TextBox input and updates parameters.
+        /// Disables all TextBox controls in the dictionary except the specified one.
         /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">Event arguments.</param>
-        private void CenteringDiameterTextBox_Leave(object sender, EventArgs e)
+        /// <param name="currentTextBox">The TextBox to remain enabled.</param>
+        private void SetTextBoxInactive(TextBox currentTextBox)
         {
-            SetValue(sender, ParameterType.CenteringDiameter);
-            UpdateParameters();
+            _errorTextBox = currentTextBox;
+            foreach (var textBox in _textBoxParameters.Keys.Where(
+                textBox => textBox != currentTextBox))
+            {
+                SetTextBoxState(textBox, true, MainFormColors.InactiveTextBoxColor);
+            }
         }
 
         /// <summary>
-        /// Event handler for the Leave event of the Width Working Surface TextBox.
-        /// Sets the value of the Width Working Surface parameter based on the TextBox input and updates parameters.
+        /// Enables all TextBox controls and sets their background color to the default active color.
         /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">Event arguments.</param>
-        private void WidthWorkingSurfaceTextBox_Leave(object sender, EventArgs e)
+        private void SetTextBoxActive()
         {
-            SetValue(sender, ParameterType.WidthWorkingSurface);
-            UpdateParameters();
+            foreach (var textBox in _textBoxParameters.Keys)
+            {
+                SetTextBoxState(textBox, false, MainFormColors.DefaultTextBoxColor);
+            }
         }
 
-        /// <summary>
-        /// Event handler for the MouseLeave event of the Width Larger Fastener TextBox.
-        /// Sets the value of the Width Larger Fastener parameter based on the TextBox input and updates parameters.
-        /// </summary>
-        /// <param name="sender">The TextBox raising the event.</param>
-        /// <param name="e">Event arguments.</param>
-        private void WidthLargerFastenerTextBox_MouseLeave(object sender, EventArgs e)
+        private void SetInfoTextBox(object sender, EventArgs e)
         {
-            SetValue(sender, ParameterType.WidthLargerFastener);
-            UpdateParameters();
+            var textBox = (TextBox)sender;
+            var description = ParameterTypeHelper.GetParameterTypeDescription(_textBoxParameters[textBox]);
+
+            InfoTextBox.Enabled = true;
+            InfoTextBox.Text = description;
         }
     }
 }

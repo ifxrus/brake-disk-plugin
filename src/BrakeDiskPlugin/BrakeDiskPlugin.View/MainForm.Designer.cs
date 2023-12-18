@@ -115,8 +115,9 @@
             CenteringDiameterTextBox.Size = new Size(52, 22);
             CenteringDiameterTextBox.TabIndex = 100;
             CenteringDiameterTextBox.TabStop = false;
-            CenteringDiameterTextBox.KeyPress += CenteringDiameterTextBox_KeyPress;
-            CenteringDiameterTextBox.Leave += CenteringDiameterTextBox_Leave;
+            CenteringDiameterTextBox.Enter += SetInfoTextBox;
+            CenteringDiameterTextBox.KeyPress += HandleKeyPress;
+            CenteringDiameterTextBox.Leave += LeaveTextBox;
             // 
             // SmallerFastenerBrakeDiskDiameterTextBox
             // 
@@ -139,8 +140,9 @@
             LargerFastenerBrakeDiskDiameterTextBox.Size = new Size(56, 22);
             LargerFastenerBrakeDiskDiameterTextBox.TabIndex = 100;
             LargerFastenerBrakeDiskDiameterTextBox.TabStop = false;
-            LargerFastenerBrakeDiskDiameterTextBox.KeyPress += LargerFastenerBrakeDiskDiameterTextBox_KeyPress;
-            LargerFastenerBrakeDiskDiameterTextBox.Leave += LargerFastenerBrakeDiskDiameterTextBox_Leave;
+            LargerFastenerBrakeDiskDiameterTextBox.Enter += SetInfoTextBox;
+            LargerFastenerBrakeDiskDiameterTextBox.KeyPress += HandleKeyPress;
+            LargerFastenerBrakeDiskDiameterTextBox.Leave += LeaveTextBox;
             // 
             // BrakeDiskDiameterTextBox
             // 
@@ -151,8 +153,9 @@
             BrakeDiskDiameterTextBox.Size = new Size(56, 22);
             BrakeDiskDiameterTextBox.TabIndex = 100;
             BrakeDiskDiameterTextBox.TabStop = false;
+            BrakeDiskDiameterTextBox.Enter += SetInfoTextBox;
             BrakeDiskDiameterTextBox.KeyPress += HandleKeyPress;
-            BrakeDiskDiameterTextBox.Leave += BrakeDiskDiameterTextBox_Leave;
+            BrakeDiskDiameterTextBox.Leave += LeaveTextBox;
             // 
             // WidthSmallerFastenerTextBox
             // 
@@ -174,8 +177,9 @@
             WidthLargerFastenerTextBox.Size = new Size(56, 22);
             WidthLargerFastenerTextBox.TabIndex = 100;
             WidthLargerFastenerTextBox.TabStop = false;
-            WidthLargerFastenerTextBox.KeyPress += WidthLargerFastenerTextBox_KeyPress;
-            WidthLargerFastenerTextBox.MouseLeave += WidthLargerFastenerTextBox_MouseLeave;
+            WidthLargerFastenerTextBox.Enter += SetInfoTextBox;
+            WidthLargerFastenerTextBox.KeyPress += HandleKeyPress;
+            WidthLargerFastenerTextBox.Leave += LeaveTextBox;
             // 
             // WidthWorkingSurfaceTextBox
             // 
@@ -186,8 +190,9 @@
             WidthWorkingSurfaceTextBox.Size = new Size(56, 22);
             WidthWorkingSurfaceTextBox.TabIndex = 100;
             WidthWorkingSurfaceTextBox.TabStop = false;
-            WidthWorkingSurfaceTextBox.KeyPress += WidthWorkingSurfaceTextBox_KeyPress;
-            WidthWorkingSurfaceTextBox.Leave += WidthWorkingSurfaceTextBox_Leave;
+            WidthWorkingSurfaceTextBox.Enter += SetInfoTextBox;
+            WidthWorkingSurfaceTextBox.KeyPress += HandleKeyPress;
+            WidthWorkingSurfaceTextBox.Leave += LeaveTextBox;
             // 
             // BuildingPanel
             // 
@@ -366,7 +371,6 @@
         private TextBox WidthLargerFastenerTextBox;
         private TextBox CenteringDiameterTextBox;
         private TextBox SmallerFastenerBrakeDiskDiameterTextBox;
-        private TextBox LargerFastenerBrakeDiskDiameterTextBox;
         private TextBox BrakeDiskDiameterTextBox;
         private TextBox FastenerDiameterTextBox;
         private TableLayoutPanel BuildingPanel;
@@ -380,5 +384,6 @@
         private CheckBox NewFigureCheckBox;
         private CheckBox FeatureСheckBox;
         private TextBox InfoTextBox;
+        private TextBox LargerFastenerBrakeDiskDiameterTextBox;
     }
 }
