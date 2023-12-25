@@ -25,7 +25,7 @@
 
                 if (attribute != null)
                 {
-                    return attribute.Description ?? value.ToString();
+                    return attribute.Description;
                 }
             }
 

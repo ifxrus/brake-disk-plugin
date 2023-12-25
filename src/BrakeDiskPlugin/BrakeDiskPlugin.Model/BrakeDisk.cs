@@ -7,6 +7,10 @@
     /// </summary>
     public class BrakeDisk
     {
+        /// <summary>
+        /// Dictionary to store parameters of different types along with their respective limits.
+        /// Key represents the type of parameter, and the value is an instance of the Parameter class.
+        /// </summary>
         private readonly Dictionary<ParameterType, Parameter> _parameters =
             new ()
             {
@@ -60,7 +64,10 @@
                 }
             };
 
-        private bool _isReconciled = false;
+        /// <summary>
+        /// Flag indicating whether reconciliation of brake disk parameters has been performed.
+        /// </summary>
+        private bool _isReconciled;
 
         /// <summary>
         /// Class BrakeDisk constructor.
@@ -90,27 +97,34 @@
 
                 case ParameterType.SmallerFastenerDiameter:
                 {
-                    // TODO: магические числа
-                    minValue = _parameters[ParameterType.LargerFastenerDiameter].Value - 10;
-                    maxValue = _parameters[ParameterType.LargerFastenerDiameter].Value - 10;
-                    value = _parameters[ParameterType.LargerFastenerDiameter].Value - 10;
+                    minValue = _parameters[ParameterType.LargerFastenerDiameter].Value
+                               - BrakeDiskConstants.DiffBetweenDiameters;
+                    maxValue = _parameters[ParameterType.LargerFastenerDiameter].Value
+                               - BrakeDiskConstants.DiffBetweenDiameters;
+                    value = _parameters[ParameterType.LargerFastenerDiameter].Value
+                            - BrakeDiskConstants.DiffBetweenDiameters;
                     _isReconciled = true;
                     break;
                 }
 
                 case ParameterType.FastenerDiameter:
                 {
-                    minValue = _parameters[ParameterType.CenteringDiameter].Value / 5;
-                    maxValue = _parameters[ParameterType.CenteringDiameter].Value / 5;
-                    value = _parameters[ParameterType.CenteringDiameter].Value / 5;
+                    minValue = _parameters[ParameterType.CenteringDiameter].Value
+                               / BrakeDiskConstants.DiameterRatioFastener;
+                    maxValue = _parameters[ParameterType.CenteringDiameter].Value
+                               / BrakeDiskConstants.DiameterRatioFastener;
+                    value = _parameters[ParameterType.CenteringDiameter].Value
+                            / BrakeDiskConstants.DiameterRatioFastener;
                     _isReconciled = true;
                     break;
                 }
 
                 case ParameterType.CenteringDiameter:
                 {
-                    minValue = _parameters[ParameterType.LargerFastenerDiameter].MinValue * 0.25;
-                    maxValue = _parameters[ParameterType.LargerFastenerDiameter].MaxValue * 0.5;
+                    minValue = _parameters[ParameterType.LargerFastenerDiameter].MinValue
+                               * BrakeDiskConstants.CenteringRatioFastener;
+                    maxValue = _parameters[ParameterType.LargerFastenerDiameter].MaxValue
+                               * BrakeDiskConstants.CenteringRatioFastener;
                     break;
                 }
 
