@@ -3,6 +3,9 @@
     using BrakeDiskPlugin.Model.Parameters;
     using NUnit.Framework;
 
+    /// <summary>
+    /// Unit tests for the <see cref="BrakeDisk"/> class.
+    /// </summary>
     internal class BrakeDiskTests
     {
         [TestCase(

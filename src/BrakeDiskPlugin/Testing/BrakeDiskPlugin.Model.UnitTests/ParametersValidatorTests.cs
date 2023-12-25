@@ -3,6 +3,9 @@
     using BrakeDiskPlugin.Model.Validators;
     using NUnit.Framework;
 
+    /// <summary>
+    /// Unit tests for the <see cref="ParametersValidator"/> class.
+    /// </summary>
     [TestFixture]
     internal class ParametersValidatorTests
     {

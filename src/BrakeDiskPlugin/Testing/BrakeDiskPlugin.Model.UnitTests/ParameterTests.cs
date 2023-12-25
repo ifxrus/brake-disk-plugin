@@ -3,6 +3,9 @@
     using BrakeDiskPlugin.Model.Parameters;
     using NUnit.Framework;
 
+    /// <summary>
+    /// Unit tests for the <see cref="Parameter"/> class.
+    /// </summary>
     [TestFixture]
     internal class ParameterTests
     {
