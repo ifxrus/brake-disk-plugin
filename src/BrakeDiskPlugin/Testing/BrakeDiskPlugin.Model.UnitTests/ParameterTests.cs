@@ -62,7 +62,7 @@
             bool isValidValue)
         {
             // Arrange
-            var parameter = new Parameter(0.0, 0.0, 10.0);
+            var parameter = new Parameter(0.0, minValue, maxValue);
 
             // Act & Assert
             if (isValidValue)

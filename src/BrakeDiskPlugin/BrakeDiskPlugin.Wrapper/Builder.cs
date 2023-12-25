@@ -9,10 +9,27 @@
     /// </summary>
     public class Builder
     {
+        // TODO: Магические числа
+
         /// <summary>
         /// The wrapper instance for interacting with the KOMPAS-3D API.
         /// </summary>
         private readonly Wrapper _wrapper = new ();
+
+        /// <summary>
+        /// Factor determining the position of the smaller fastener relative to its diameter.
+        /// </summary>
+        private const double FastenerPositionFactor = 0.75;
+
+        /// <summary>
+        /// Factor determining the radius of the smaller fastener relative to its diameter.
+        /// </summary>
+        private const double FastenerRadiusFactor = 0.9;
+
+        /// <summary>
+        /// Adjustment value for the brake disk width.
+        /// </summary>
+        private const double BrakeDiskWidthAdjustment = 15;
 
         /// <summary>
         /// Builds a brake disk by connecting to CAD, creating a 3D document, and constructing various
@@ -45,11 +62,6 @@
                 brakeDisk.GetValue(ParameterType.WidthLargerFastener));
         }
 
-        /// <summary>
-        /// Creates and extrudes the base sketch of the brake disk.
-        /// </summary>
-        /// <param name="rad">Radius of the base sketch.</param>
-        /// <param name="largerDim">Larger dimension of the base sketch.</param>
         private void CreateAndExtrudeBase(double rad, double largerDim)
         {
             var sketch = _wrapper.CreateSketch();
@@ -60,12 +72,6 @@
             _wrapper.MakeExtrusion(5);
         }
 
-        /// <summary>
-        /// Creates and extrudes the sketch for the larger fastener of the brake disk.
-        /// </summary>
-        /// <param name="largerDim">Larger dimension of the fastener sketch.</param>
-        /// <param name="smallerDim">Smaller dimension of the fastener sketch.</param>
-        /// <param name="depth">Extrusion depth of the larger fastener sketch.</param>
         private void CreateAndExtrudeLargerFastener(
             double largerDim,
             double smallerDim,
@@ -79,21 +85,13 @@
             _wrapper.MakeExtrusion(depth, false);
         }
 
-        /// <summary>
-        /// Creates and extrudes the sketch for the smaller fastener of the brake disk.
-        /// </summary>
-        /// <param name="smallerDim">Smaller dimension of the fastener sketch.</param>
-        /// <param name="centeringDim">Centering dimension of the fastener sketch.</param>
-        /// <param name="fastenerDim">Dimension of the fastener in the sketch.</param>
-        /// <param name="smallerWidth">Width of the smaller fastener sketch.</param>
         private void CreateAndExtrudeSmallerFastener(
             double smallerDim,
             double centeringDim,
             double fastenerDim,
             double smallerWidth)
         {
-            // TODO: магические числа
-            var fastenerPos = smallerDim / 2 * 0.75;
+            var fastenerPos = smallerDim / 2 * FastenerPositionFactor;
 
             var sketch = _wrapper.CreateSketch();
             var doc2d = (ksDocument2D)sketch.BeginEdit();
@@ -107,19 +105,10 @@
             _wrapper.MakeExtrusion(smallerWidth * 2, false);
         }
 
-        /// <summary>
-        /// Creates and extrudes the sketch for the extrude operation of the brake disk.
-        /// </summary>
-        /// <param name="smallerDim">Smaller dimension of the extrude sketch.</param>
-        /// <param name="smallerWidth">Width of the smaller extrude sketch.</param>
-        /// <param name="largerWidth">Width of the larger extrude sketch.</param>
         private void CreateAndExtrude(double smallerDim, double smallerWidth, double largerWidth)
         {
-            // TODO: магические числа
-            var fastenerRad = smallerDim / 2 * 0.9;
-
-            // TODO: магические числа
-            var brakeDiskWidth = smallerWidth + largerWidth - 15;
+            var fastenerRad = smallerDim / 2 * FastenerRadiusFactor;
+            var brakeDiskWidth = smallerWidth + largerWidth - BrakeDiskWidthAdjustment;
 
             var sketch = _wrapper.CreateSketch();
             var doc2d = (ksDocument2D)sketch.BeginEdit();
