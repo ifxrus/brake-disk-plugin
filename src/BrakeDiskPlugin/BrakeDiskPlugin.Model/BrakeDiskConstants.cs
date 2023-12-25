@@ -69,5 +69,20 @@
         /// Width of larger fastener.
         /// </summary>
         public const double WidthSmallerFastener = MinWidthLargerFastener;
+
+        /// <summary>
+        /// Constant representing the allowable difference between brake disk diameters.
+        /// </summary>
+        public const double DiffBetweenDiameters = 10;
+
+        /// <summary>
+        /// Constant representing the ratio of larger fastener diameter to brake disk diameter.
+        /// </summary>
+        public const double DiameterRatioFastener = 5;
+
+        /// <summary>
+        /// Constant representing the ratio of centering diameter to brake disk diameter for fasteners.
+        /// </summary>
+        public const double CenteringRatioFastener = 0.25;
     }
 }

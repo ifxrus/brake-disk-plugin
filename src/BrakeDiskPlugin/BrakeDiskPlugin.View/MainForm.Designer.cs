@@ -331,6 +331,7 @@
             BuildButton.Size = new Size(78, 73);
             BuildButton.TabIndex = 0;
             BuildButton.UseVisualStyleBackColor = false;
+            BuildButton.Click += BuildButton_Click;
             // 
             // MainForm
             // 

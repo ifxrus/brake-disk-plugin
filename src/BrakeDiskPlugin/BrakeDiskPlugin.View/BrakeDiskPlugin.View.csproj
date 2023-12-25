@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BrakeDiskPlugin.Model\BrakeDiskPlugin.Model.csproj" />
+    <ProjectReference Include="..\BrakeDiskPlugin.Wrapper\BrakeDiskPlugin.Wrapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

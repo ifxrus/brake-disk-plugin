@@ -4,6 +4,7 @@ namespace BrakeDiskPlugin.View
     using BrakeDiskPlugin.Model;
     using BrakeDiskPlugin.Model.Parameters;
     using BrakeDiskPlugin.Model.Validators;
+    using BrakeDiskPlugin.Wrapper;
 
     /// <summary>
     /// The main class of the program interface.
@@ -16,6 +17,11 @@ namespace BrakeDiskPlugin.View
         private readonly BrakeDisk _brakeDisk = new ();
 
         /// <summary>
+        /// Instance of the Builder class used for constructing brake disk objects.
+        /// </summary>
+        private readonly Builder _builder = new ();
+
+        /// <summary>
         /// Represents a dictionary that maps TextBox controls to their corresponding ParameterType values.
         /// </summary>
         private readonly Dictionary<TextBox, ParameterType> _textBoxParameters;
@@ -26,7 +32,8 @@ namespace BrakeDiskPlugin.View
         private bool _errorIsActive;
 
         /// <summary>
-        /// Represents the TextBox control associated with the active error condition, or null if no error is currently active.
+        /// Represents the TextBox control associated with the active error condition, or null if no error is
+        /// currently active.
         /// </summary>
         private TextBox? _errorTextBox;
 
@@ -206,13 +213,32 @@ namespace BrakeDiskPlugin.View
             }
         }
 
+        /// <summary>
+        /// Event handler for updating the information textBox based on the selected textBox.
+        /// Retrieves the parameter type description using ParameterTypeHelper
+        /// and sets it as the text content of the InfoTextBox.
+        /// </summary>
+        /// <param name="sender">The source of the event (a TextBox).</param>
+        /// <param name="e">The event data.</param>
         private void SetInfoTextBox(object sender, EventArgs e)
         {
             var textBox = (TextBox)sender;
-            var description = ParameterTypeHelper.GetParameterTypeDescription(_textBoxParameters[textBox]);
+            var description =
+                ParameterTypeHelper.GetParameterTypeDescription(_textBoxParameters[textBox]);
 
             InfoTextBox.Enabled = true;
             InfoTextBox.Text = description;
+        }
+
+        /// <summary>
+        /// Event handler for building a brake disk using the specified builder and brake disk instance.
+        /// Invokes the BuildBrakeDisk method of the builder with the provided brake disk.
+        /// </summary>
+        /// <param name="sender">The source of the event (a button).</param>
+        /// <param name="e">The event data.</param>
+        private void BuildButton_Click(object sender, EventArgs e)
+        {
+            _builder.BuildBrakeDisk(_brakeDisk);
         }
     }
 }
