@@ -73,8 +73,7 @@
         {
             if (!ParametersValidator.ValidateValueLower(minValue, maxValue))
             {
-                throw new ArgumentException(
-                    "Минимальное значение больше максимального значения.");
+                throw new ArgumentException("Минимальное значение больше максимального значения.");
             }
 
             MinValue = minValue;
