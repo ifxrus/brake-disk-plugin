@@ -54,6 +54,7 @@
             10.0,
             false,
             TestName = "SetValue throws ArgumentException for value outside the range.")]
+        // TODO: не используются minValue и maxValue
         public void SetValue_SetsValueCorrectly(
             double value,
             double minValue,

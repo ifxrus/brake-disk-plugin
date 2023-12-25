@@ -124,6 +124,7 @@
         /// <param name="extrusionType">The type of extrusion (boss or cut).</param>
         /// <param name="depth">The depth of the extrusion.</param>
         /// <param name="side">Determines the side of the extrusion.</param>
+        // TODO: extrusionType не используется
         private void PerformExtrusion(
             ksEntity? extrusionEntity,
             short extrusionType,

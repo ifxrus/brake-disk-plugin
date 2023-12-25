@@ -92,6 +92,7 @@
             double fastenerDim,
             double smallerWidth)
         {
+            // TODO: магические числа
             var fastenerPos = smallerDim / 2 * 0.75;
 
             var sketch = _wrapper.CreateSketch();
@@ -114,7 +115,10 @@
         /// <param name="largerWidth">Width of the larger extrude sketch.</param>
         private void CreateAndExtrude(double smallerDim, double smallerWidth, double largerWidth)
         {
+            // TODO: магические числа
             var fastenerRad = smallerDim / 2 * 0.9;
+
+            // TODO: магические числа
             var brakeDiskWidth = smallerWidth + largerWidth - 15;
 
             var sketch = _wrapper.CreateSketch();
