@@ -11,77 +11,80 @@ public static class CustomMarshal
     /// <summary>
     /// Constant representing the OLEAUT32.dll library.
     /// </summary>
-    internal const string OLEAUT32 = "oleaut32.dll";
+    internal const string OleAut32Library = "oleaut32.dll";
 
     /// <summary>
     /// Constant representing the OLE32.dll library.
     /// </summary>
-    internal const string OLE32 = "ole32.dll";
+    internal const string Ole32Library = "ole32.dll";
 
     /// <summary>
     /// Retrieves the active COM object based on the specified ProgID.
     /// </summary>
-    /// <param name="progID">The ProgID of the COM object.</param>
-    /// <returns>The active COM object associated with the ProgID.</returns>
+    /// <param name="programId">The ProgramID of the COM object.</param>
+    /// <returns>The active COM object associated with the ProgramID.</returns>
+    // TODO: programId
     [SecurityCritical] // auto-generated_required
-    public static object GetActiveObject(string progID)
+    public static object GetActiveObject(string programId)
     {
-        Guid clsid;
+        Guid classId;
 
         // Call CLSIDFromProgIDEx first then fall back on CLSIDFromProgID if
         // CLSIDFromProgIDEx doesn't exist.
         try
         {
-            CLSIDFromProgIDEx(progID, out clsid);
+            CLSIDFromProgIDEx(programId, out classId);
         }
         catch (Exception)
         {
-            CLSIDFromProgID(progID, out clsid);
+            CLSIDFromProgID(programId, out classId);
         }
 
-        object obj;
-        GetActiveObject(ref clsid, IntPtr.Zero, out obj);
-        return obj;
+        // TODO: ppunk
+        object comObject;
+        GetActiveObject(ref classId, IntPtr.Zero, out comObject);
+        return comObject;
     }
 
     /// <summary>
     /// Retrieves the CLSID from the specified ProgID using an extended version of the function.
     /// </summary>
     /// <param name="progId">The ProgID of the COM object.</param>
-    /// <param name="clsid">The resulting CLSID associated with the ProgID.</param>
-    [DllImport(OLE32, PreserveSig = false)]
+    /// <param name="classId">The resulting CLSID associated with the ProgID.</param>
+    [DllImport(Ole32Library, PreserveSig = false)]
     [ResourceExposure(ResourceScope.None)]
     [SuppressUnmanagedCodeSecurity]
     [SecurityCritical] // auto-generated
     private static extern void CLSIDFromProgIDEx(
         [MarshalAs(UnmanagedType.LPWStr)] string progId,
-        out Guid clsid);
+        out Guid classId);
 
     /// <summary>
     /// Retrieves the CLSID from the specified ProgID.
     /// </summary>
     /// <param name="progId">The ProgID of the COM object.</param>
-    /// <param name="clsid">The resulting CLSID associated with the ProgID.</param>
-    [DllImport(OLE32, PreserveSig = false)]
+    /// <param name="classId">The resulting CLSID associated with the ProgID.</param>
+    [DllImport(Ole32Library, PreserveSig = false)]
     [ResourceExposure(ResourceScope.None)]
     [SuppressUnmanagedCodeSecurity]
     [SecurityCritical] // auto-generated
     private static extern void CLSIDFromProgID(
         [MarshalAs(UnmanagedType.LPWStr)] string progId,
-        out Guid clsid);
+        out Guid classId);
 
     /// <summary>
     /// Retrieves the active COM object based on the specified CLSID.
     /// </summary>
-    /// <param name="rclsid">The CLSID of the COM object.</param>
+    /// <param name="requestedClsid">The CLSID of the COM object.</param>
     /// <param name="reserved">Reserved parameter (set to IntPtr.Zero).</param>
-    /// <param name="ppunk">The resulting active COM object.</param>
-    [DllImport(OLEAUT32, PreserveSig = false)]
+    /// <param name="ppUnknown">The resulting active COM object.</param>
+    [DllImport(OleAut32Library, PreserveSig = false)]
     [ResourceExposure(ResourceScope.None)]
     [SuppressUnmanagedCodeSecurity]
     [SecurityCritical] // auto-generated
     private static extern void GetActiveObject(
-        ref Guid rclsid,
+        ref Guid requestedClsid,
         IntPtr reserved,
-        [MarshalAs(UnmanagedType.Interface)] out object ppunk);
+        [MarshalAs(UnmanagedType.Interface)] out object ppUnknown);
+
 }

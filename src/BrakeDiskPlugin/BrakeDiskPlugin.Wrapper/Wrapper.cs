@@ -97,7 +97,6 @@
         {
             PerformExtrusion(
                 (ksEntity?)_part.NewEntity((short)Obj3dType.o3d_bossExtrusion),
-                (short)Obj3dType.o3d_bossExtrusion,
                 depth,
                 side);
         }
@@ -111,7 +110,6 @@
         {
             PerformExtrusion(
                 (ksEntity?)_part.NewEntity((short)Obj3dType.o3d_cutExtrusion),
-                (short)Obj3dType.o3d_cutExtrusion,
                 depth,
                 side);
         }
@@ -121,12 +119,11 @@
         /// parameters.
         /// </summary>
         /// <param name="extrusionEntity">The entity representing the extrusion in the CAD environment.</param>
-        /// <param name="extrusionType">The type of extrusion (boss or cut).</param>
         /// <param name="depth">The depth of the extrusion.</param>
         /// <param name="side">Determines the side of the extrusion.</param>
+        // TODO: extrusionType не используется
         private void PerformExtrusion(
             ksEntity? extrusionEntity,
-            short extrusionType,
             double depth,
             bool side)
         {
