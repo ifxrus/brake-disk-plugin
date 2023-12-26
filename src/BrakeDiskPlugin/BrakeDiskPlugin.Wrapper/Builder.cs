@@ -9,8 +9,6 @@
     /// </summary>
     public class Builder
     {
-        // TODO: Магические числа
-
         /// <summary>
         /// The wrapper instance for interacting with the KOMPAS-3D API.
         /// </summary>

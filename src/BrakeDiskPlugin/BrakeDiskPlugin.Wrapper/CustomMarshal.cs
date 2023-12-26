@@ -23,7 +23,6 @@ public static class CustomMarshal
     /// </summary>
     /// <param name="programId">The ProgramID of the COM object.</param>
     /// <returns>The active COM object associated with the ProgramID.</returns>
-    // TODO: programId
     [SecurityCritical] // auto-generated_required
     public static object GetActiveObject(string programId)
     {
@@ -40,7 +39,6 @@ public static class CustomMarshal
             CLSIDFromProgID(programId, out classId);
         }
 
-        // TODO: ppunk
         object comObject;
         GetActiveObject(ref classId, IntPtr.Zero, out comObject);
         return comObject;
