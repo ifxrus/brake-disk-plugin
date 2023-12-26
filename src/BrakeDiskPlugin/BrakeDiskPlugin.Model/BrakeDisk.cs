@@ -61,6 +61,12 @@
                         BrakeDiskConstants.WidthSmallerFastener,
                         BrakeDiskConstants.WidthSmallerFastener,
                         BrakeDiskConstants.WidthSmallerFastener)
+                },
+                {
+                    ParameterType.NumberOfFasteners, new Parameter(
+                        BrakeDiskConstants.MinNumberOfFasteners,
+                        BrakeDiskConstants.MinNumberOfFasteners,
+                        BrakeDiskConstants.MaxNumberOfFasteners)
                 }
             };
 
@@ -90,6 +96,7 @@
                 case ParameterType.WidthWorkingSurface:
                 case ParameterType.LargerFastenerDiameter:
                 case ParameterType.WidthLargerFastener:
+                case ParameterType.NumberOfFasteners:
                 {
                     _isReconciled = false;
                     break;

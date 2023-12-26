@@ -73,6 +73,16 @@ namespace BrakeDiskPlugin.View.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MainForm {
+            get {
+                object obj = ResourceManager.GetObject("MainForm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MainFormBackImage {
             get {
                 object obj = ResourceManager.GetObject("MainFormBackImage", resourceCulture);

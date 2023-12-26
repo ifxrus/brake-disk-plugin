@@ -6,6 +6,16 @@
     public static class BrakeDiskConstants
     {
         /// <summary>
+        /// Maximum number of fasteners.
+        /// </summary>
+        public const double MaxNumberOfFasteners = 6;
+
+        /// <summary>
+        /// Minimum number of fasteners.
+        /// </summary>
+        public const double MinNumberOfFasteners = 2;
+
+        /// <summary>
         /// Maximum diameter of the brake disc.
         /// </summary>
         public const double MaxBrakeDiskDiameter = 400;

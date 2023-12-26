@@ -31,6 +31,7 @@
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             MainLayoutPanel = new TableLayoutPanel();
             ParametersPanel = new Panel();
+            NumberOfFastenersTextBox = new TextBox();
             FastenerDiameterTextBox = new TextBox();
             CenteringDiameterTextBox = new TextBox();
             SmallerFastenerBrakeDiskDiameterTextBox = new TextBox();
@@ -77,9 +78,10 @@
             // 
             // ParametersPanel
             // 
-            ParametersPanel.BackgroundImage = Properties.Resources.MainFormBackImage;
+            ParametersPanel.BackgroundImage = Properties.Resources.MainForm;
             ParametersPanel.BackgroundImageLayout = ImageLayout.Stretch;
             ParametersPanel.BorderStyle = BorderStyle.FixedSingle;
+            ParametersPanel.Controls.Add(NumberOfFastenersTextBox);
             ParametersPanel.Controls.Add(FastenerDiameterTextBox);
             ParametersPanel.Controls.Add(CenteringDiameterTextBox);
             ParametersPanel.Controls.Add(SmallerFastenerBrakeDiskDiameterTextBox);
@@ -95,12 +97,24 @@
             ParametersPanel.Size = new Size(618, 384);
             ParametersPanel.TabIndex = 0;
             // 
+            // NumberOfFastenersTextBox
+            // 
+            NumberOfFastenersTextBox.BackColor = Color.White;
+            NumberOfFastenersTextBox.BorderStyle = BorderStyle.FixedSingle;
+            NumberOfFastenersTextBox.Location = new Point(363, 67);
+            NumberOfFastenersTextBox.Name = "NumberOfFastenersTextBox";
+            NumberOfFastenersTextBox.Size = new Size(57, 22);
+            NumberOfFastenersTextBox.TabIndex = 101;
+            NumberOfFastenersTextBox.TabStop = false;
+            NumberOfFastenersTextBox.Enter += SetInfoTextBox;
+            NumberOfFastenersTextBox.Leave += LeaveTextBox;
+            // 
             // FastenerDiameterTextBox
             // 
             FastenerDiameterTextBox.BackColor = Color.WhiteSmoke;
             FastenerDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
             FastenerDiameterTextBox.Enabled = false;
-            FastenerDiameterTextBox.Location = new Point(368, 286);
+            FastenerDiameterTextBox.Location = new Point(365, 260);
             FastenerDiameterTextBox.Name = "FastenerDiameterTextBox";
             FastenerDiameterTextBox.Size = new Size(47, 22);
             FastenerDiameterTextBox.TabIndex = 100;
@@ -110,7 +124,7 @@
             // 
             CenteringDiameterTextBox.BackColor = Color.White;
             CenteringDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
-            CenteringDiameterTextBox.Location = new Point(193, 333);
+            CenteringDiameterTextBox.Location = new Point(202, 300);
             CenteringDiameterTextBox.Name = "CenteringDiameterTextBox";
             CenteringDiameterTextBox.Size = new Size(52, 22);
             CenteringDiameterTextBox.TabIndex = 100;
@@ -124,7 +138,7 @@
             SmallerFastenerBrakeDiskDiameterTextBox.BackColor = Color.WhiteSmoke;
             SmallerFastenerBrakeDiskDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
             SmallerFastenerBrakeDiskDiameterTextBox.Enabled = false;
-            SmallerFastenerBrakeDiskDiameterTextBox.Location = new Point(534, 333);
+            SmallerFastenerBrakeDiskDiameterTextBox.Location = new Point(523, 300);
             SmallerFastenerBrakeDiskDiameterTextBox.Name = "SmallerFastenerBrakeDiskDiameterTextBox";
             SmallerFastenerBrakeDiskDiameterTextBox.Size = new Size(56, 22);
             SmallerFastenerBrakeDiskDiameterTextBox.TabIndex = 100;
@@ -134,7 +148,7 @@
             // 
             LargerFastenerBrakeDiskDiameterTextBox.BackColor = Color.White;
             LargerFastenerBrakeDiskDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
-            LargerFastenerBrakeDiskDiameterTextBox.Location = new Point(535, 11);
+            LargerFastenerBrakeDiskDiameterTextBox.Location = new Point(523, 33);
             LargerFastenerBrakeDiskDiameterTextBox.Name = "LargerFastenerBrakeDiskDiameterTextBox";
             LargerFastenerBrakeDiskDiameterTextBox.ShortcutsEnabled = false;
             LargerFastenerBrakeDiskDiameterTextBox.Size = new Size(56, 22);
@@ -148,7 +162,7 @@
             // 
             BrakeDiskDiameterTextBox.BackColor = Color.White;
             BrakeDiskDiameterTextBox.BorderStyle = BorderStyle.FixedSingle;
-            BrakeDiskDiameterTextBox.Location = new Point(194, 11);
+            BrakeDiskDiameterTextBox.Location = new Point(202, 33);
             BrakeDiskDiameterTextBox.Name = "BrakeDiskDiameterTextBox";
             BrakeDiskDiameterTextBox.Size = new Size(56, 22);
             BrakeDiskDiameterTextBox.TabIndex = 100;
@@ -162,7 +176,7 @@
             WidthSmallerFastenerTextBox.BackColor = Color.WhiteSmoke;
             WidthSmallerFastenerTextBox.BorderStyle = BorderStyle.FixedSingle;
             WidthSmallerFastenerTextBox.Enabled = false;
-            WidthSmallerFastenerTextBox.Location = new Point(89, 263);
+            WidthSmallerFastenerTextBox.Location = new Point(98, 245);
             WidthSmallerFastenerTextBox.Name = "WidthSmallerFastenerTextBox";
             WidthSmallerFastenerTextBox.Size = new Size(56, 22);
             WidthSmallerFastenerTextBox.TabIndex = 100;
@@ -172,7 +186,7 @@
             // 
             WidthLargerFastenerTextBox.BackColor = Color.White;
             WidthLargerFastenerTextBox.BorderStyle = BorderStyle.FixedSingle;
-            WidthLargerFastenerTextBox.Location = new Point(89, 121);
+            WidthLargerFastenerTextBox.Location = new Point(98, 128);
             WidthLargerFastenerTextBox.Name = "WidthLargerFastenerTextBox";
             WidthLargerFastenerTextBox.Size = new Size(56, 22);
             WidthLargerFastenerTextBox.TabIndex = 100;
@@ -185,7 +199,7 @@
             // 
             WidthWorkingSurfaceTextBox.BackColor = Color.White;
             WidthWorkingSurfaceTextBox.BorderStyle = BorderStyle.FixedSingle;
-            WidthWorkingSurfaceTextBox.Location = new Point(88, 35);
+            WidthWorkingSurfaceTextBox.Location = new Point(98, 57);
             WidthWorkingSurfaceTextBox.Name = "WidthWorkingSurfaceTextBox";
             WidthWorkingSurfaceTextBox.Size = new Size(56, 22);
             WidthWorkingSurfaceTextBox.TabIndex = 100;
@@ -386,5 +400,6 @@
         private CheckBox FeatureСheckBox;
         private TextBox InfoTextBox;
         private TextBox LargerFastenerBrakeDiskDiameterTextBox;
+        private TextBox NumberOfFastenersTextBox;
     }
 }
