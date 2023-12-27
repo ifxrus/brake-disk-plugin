@@ -14,12 +14,12 @@ namespace BrakeDiskPlugin.View
         /// <summary>
         /// Represents a class member that holds an instance of the BrakeDisk class.
         /// </summary>
-        private readonly BrakeDisk _brakeDisk = new ();
+        private readonly BrakeDisk _brakeDisk = new();
 
         /// <summary>
         /// Instance of the Builder class used for constructing brake disk objects.
         /// </summary>
-        private readonly Builder _builder = new ();
+        private readonly Builder _builder = new();
 
         /// <summary>
         /// Represents a dictionary that maps TextBox controls to their corresponding ParameterType values.
@@ -69,6 +69,9 @@ namespace BrakeDiskPlugin.View
                 },
                 {
                     WidthSmallerFastenerTextBox, ParameterType.WidthSmallerFastener
+                },
+                {
+                    NumberOfFastenersTextBox, ParameterType.NumberOfFasteners
                 }
             };
 

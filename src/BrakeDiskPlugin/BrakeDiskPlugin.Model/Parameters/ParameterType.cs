@@ -53,6 +53,12 @@
         /// Width of the smaller fastener.
         /// </summary>
         [Description("Ширина меньшего крепежного элемента.")]
-        WidthSmallerFastener
+        WidthSmallerFastener,
+
+        /// <summary>
+        /// Number of fasteners.
+        /// </summary>
+        [Description("Количество крепежей.")]
+        NumberOfFasteners
     }
 }
