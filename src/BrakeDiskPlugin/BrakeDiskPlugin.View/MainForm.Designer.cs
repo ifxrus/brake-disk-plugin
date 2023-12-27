@@ -46,9 +46,6 @@
             ActionsPanel = new Panel();
             ActionsLayoutPanel = new TableLayoutPanel();
             OptionsPanel = new Panel();
-            FeatureСheckBox = new CheckBox();
-            NewFigureCheckBox = new CheckBox();
-            Optionslabel = new Label();
             ButtonPanel = new Panel();
             BuildButton = new Button();
             MainLayoutPanel.SuspendLayout();
@@ -57,7 +54,6 @@
             InfoPanel.SuspendLayout();
             ActionsPanel.SuspendLayout();
             ActionsLayoutPanel.SuspendLayout();
-            OptionsPanel.SuspendLayout();
             ButtonPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -279,44 +275,11 @@
             // 
             // OptionsPanel
             // 
-            OptionsPanel.Controls.Add(FeatureСheckBox);
-            OptionsPanel.Controls.Add(NewFigureCheckBox);
-            OptionsPanel.Controls.Add(Optionslabel);
             OptionsPanel.Dock = DockStyle.Fill;
             OptionsPanel.Location = new Point(3, 3);
             OptionsPanel.Name = "OptionsPanel";
             OptionsPanel.Size = new Size(178, 69);
             OptionsPanel.TabIndex = 1;
-            // 
-            // FeatureСheckBox
-            // 
-            FeatureСheckBox.AutoSize = true;
-            FeatureСheckBox.Location = new Point(7, 45);
-            FeatureСheckBox.Name = "FeatureСheckBox";
-            FeatureСheckBox.Size = new Size(74, 18);
-            FeatureСheckBox.TabIndex = 2;
-            FeatureСheckBox.Text = "Опция 2";
-            FeatureСheckBox.UseVisualStyleBackColor = true;
-            // 
-            // NewFigureCheckBox
-            // 
-            NewFigureCheckBox.AutoSize = true;
-            NewFigureCheckBox.Location = new Point(7, 22);
-            NewFigureCheckBox.Name = "NewFigureCheckBox";
-            NewFigureCheckBox.Size = new Size(74, 18);
-            NewFigureCheckBox.TabIndex = 1;
-            NewFigureCheckBox.Text = "Опция 1";
-            NewFigureCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // Optionslabel
-            // 
-            Optionslabel.AutoSize = true;
-            Optionslabel.Location = new Point(3, 3);
-            Optionslabel.Margin = new Padding(3);
-            Optionslabel.Name = "Optionslabel";
-            Optionslabel.Size = new Size(48, 14);
-            Optionslabel.TabIndex = 0;
-            Optionslabel.Text = "Опции:";
             // 
             // ButtonPanel
             // 
@@ -371,8 +334,6 @@
             InfoPanel.PerformLayout();
             ActionsPanel.ResumeLayout(false);
             ActionsLayoutPanel.ResumeLayout(false);
-            OptionsPanel.ResumeLayout(false);
-            OptionsPanel.PerformLayout();
             ButtonPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -395,9 +356,6 @@
         private Panel ButtonPanel;
         private Button BuildButton;
         private Panel OptionsPanel;
-        private Label Optionslabel;
-        private CheckBox NewFigureCheckBox;
-        private CheckBox FeatureСheckBox;
         private TextBox InfoTextBox;
         private TextBox LargerFastenerBrakeDiskDiameterTextBox;
         private TextBox NumberOfFastenersTextBox;
