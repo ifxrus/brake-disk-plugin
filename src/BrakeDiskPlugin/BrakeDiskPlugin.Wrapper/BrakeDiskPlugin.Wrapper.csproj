@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BrakeDiskPlugin.Model\BrakeDiskPlugin.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="KAPITypes">
+      <HintPath>lib\KAPITypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Kompas6API5">
+      <HintPath>lib\Kompas6API5.dll</HintPath>
+    </Reference>
+    <Reference Include="Kompas6Constants">
+      <HintPath>lib\Kompas6Constants.dll</HintPath>
+    </Reference>
+    <Reference Include="Kompas6Constants3D">
+      <HintPath>lib\Kompas6Constants3D.dll</HintPath>
+    </Reference>
+    <Reference Include="KompasAPI7">
+      <HintPath>lib\KompasAPI7.dll</HintPath>
+    </Reference>
+    <Reference Include="KompasLibrary">
+      <HintPath>lib\KompasLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
